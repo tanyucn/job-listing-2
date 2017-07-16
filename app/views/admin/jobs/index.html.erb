@@ -4,17 +4,19 @@
 
 <br><br>
 
+
 <table class="table table-bordered">
 
   <% @jobs.each do |job| %>
   <tr>
+
     <!-- cmd + / 标注快捷键 -->
     <td><%# 从第一个表格插入，<tr>是表头，<td>是第一个表格 %>
       <%= render_job_status(job) %>
 
       <%= link_to(job.title, admin_job_path(job)) %>
     </td>
-    <td>
+    <!-- <td>
       <%= link_to("Edit", edit_admin_job_path(job)) %>
       <%#= link_to("Destroy", admin_job_path(job), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
     </td>
@@ -22,7 +24,19 @@
     <td>
       <%#= link_to("Edit", edit_admin_job_path(job)) %>
       <%= link_to("Destroy", admin_job_path(job), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
-    </td>
+    </td> -->
+    <td>
+      <%= link_to("Edit", edit_admin_job_path(job)) %>
+      <%= link_to("Destroy", admin_job_path(job), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+
+
+      <% if job.is_hidden %>
+
+        <%= link_to("Publish", publish_admin_job_path(job) , :method => :post, :class => "btn btn-xs btn-default") %>
+      <% else %>
+        <%= link_to("Hide", hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
+      <% end %>
+    </td>    
     <td>
       <%= job.created_at %>
     </td>
