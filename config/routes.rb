@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :jobs
+  # resources :jobs
   root 'jobs#index'
 
 
@@ -14,4 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :jobs do
+    resources :resumes
+  end
+
+  
 end
