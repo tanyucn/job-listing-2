@@ -5,13 +5,25 @@
 <br><br>
 
 <table class="table table-bordered">
+
   <% @jobs.each do |job| %>
   <tr>
-    <td>
+
+    <td><%# 从第一个表格插入，<tr>是表头，<td>是第一个表格 %>
+      <% if job.is_hidden %>
+         (Hidden)
+      <% else %>
+         (Public)
+      <% end %>
       <%= link_to(job.title, admin_job_path(job)) %>
     </td>
     <td>
       <%= link_to("Edit", edit_admin_job_path(job)) %>
+      <%#= link_to("Destroy", admin_job_path(job), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+    </td>
+    <%#这样将Edit和Destroy分开也挺有意思的%>
+    <td>
+      <%#= link_to("Edit", edit_admin_job_path(job)) %>
       <%= link_to("Destroy", admin_job_path(job), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
     </td>
     <td>
