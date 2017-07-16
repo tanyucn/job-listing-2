@@ -8,13 +8,10 @@
 
   <% @jobs.each do |job| %>
   <tr>
-
+    
     <td><%# 从第一个表格插入，<tr>是表头，<td>是第一个表格 %>
-      <% if job.is_hidden %>
-         (Hidden)
-      <% else %>
-         (Public)
-      <% end %>
+      <%= render_job_status(job) %>
+
       <%= link_to(job.title, admin_job_path(job)) %>
     </td>
     <td>
